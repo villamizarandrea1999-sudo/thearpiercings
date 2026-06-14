@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, follow">
+  <title>Nav Component — Ear Piercings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #ffffff;
+    }
+
+    /* ============================================================
+       NEW BADGE
+    ============================================================ */
+    .new-badge {
+      background: #8b1a3a;
+      color: #fff;
+      font-size: 9px;
+      padding: 2px 5px;
+      border-radius: 3px;
+      margin-left: 4px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      vertical-align: middle;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    nav.main-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #d4e3d0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      height: 52px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      gap: 0;
+    }
+
+    .nav-logo {
+      color: #8b1a3a;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      font-family: 'Lora', serif;
+      margin-right: 24px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-logo:hover {
+      text-decoration: none;
+      opacity: 0.85;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 0;
+      height: 100%;
+      flex: 1;
+    }
+
+    .nav-links > li {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links > li > a,
+    .nav-links > li > button {
+      color: #1a1a1a;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      padding: 0 12px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.15s, background 0.15s;
+      gap: 4px;
+    }
+
+    .nav-links > li > a:hover,
+    .nav-links > li > button:hover,
+    .nav-links > li:hover > a,
+    .nav-links > li:hover > button,
+    .nav-links > li:focus-within > a,
+    .nav-links > li:focus-within > button {
+      color: #8b1a3a;
+      background: rgba(139, 26, 58, 0.07);
+      text-decoration: none;
+    }
+
+    .nav-links > li > a.active {
+      color: #8b1a3a;
+      text-decoration: underline;
+    }
+
+    .nav-links > li > button::after {
+      content: ' ▾';
+      font-size: 9px;
+    }
+
+    /* Dropdown menus */
+    .nav-dropdown {
+      display: none;
+      position: absolute;
+      top: 52px;
+      left: 0;
+      background: #ffffff;
+      border: 0.5px solid #e0e0e0;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      min-width: 230px;
+      z-index: 200;
+      padding: 6px 0;
+      list-style: none;
+    }
+
+    .nav-links > li:hover .nav-dropdown,
+    .nav-links > li:focus-within .nav-dropdown {
+      display: block;
+    }
+
+    .nav-dropdown li a {
+      display: block;
+      padding: 8px 16px;
+      font-size: 13px;
+      color: #1a1a1a;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      transition: color 0.15s, background 0.15s;
+      white-space: nowrap;
+    }
+
+    .nav-dropdown li a:hover {
+      color: #8b1a3a;
+      background: rgba(139, 26, 58, 0.05);
+      text-decoration: none;
+    }
+
+    /* Divider in dropdown */
+    .nav-dropdown .divider {
+      height: 1px;
+      background: #f0f0f0;
+      margin: 4px 0;
+    }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      margin-left: auto;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #1a1a1a;
+      border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ============================================================
+       DEMO CONTENT STYLES (below nav for context display)
+    ============================================================ */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .demo-section {
+      padding: 3rem 0;
+    }
+
+    .demo-section h1 {
+      font-family: 'Lora', serif;
+      font-size: 2rem;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-section h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.4rem;
+      color: #2a2a2a;
+      border-left: 3px solid #8b1a3a;
+      padding-left: 12px;
+      margin: 2rem 0 1rem;
+    }
+
+    .code-block {
+      background: #f5f5f5;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 1.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    p { margin-bottom: 1rem; }
+    a { color: #8b1a3a; }
+
+    /* ============================================================
+       RESPONSIVE — MOBILE
+    ============================================================ */
+    @media (max-width: 768px) {
+      nav.main-nav {
+        height: auto;
+        min-height: 52px;
+        flex-wrap: wrap;
+      }
+
+      .nav-inner {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 0 16px;
+        align-items: center;
+        min-height: 52px;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        height: auto;
+        padding: 0 0 12px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links > li {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      .nav-links > li > a,
+      .nav-links > li > button {
+        height: auto;
+        padding: 10px 0;
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .nav-dropdown {
+        position: static;
+        display: none;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        padding: 0 0 0 16px;
+        min-width: unset;
+        width: 100%;
+      }
+
+      .nav-links > li.mobile-open .nav-dropdown {
+        display: block;
+      }
+
+      .nav-dropdown li a {
+        padding: 7px 0;
+        font-size: 13px;
+      }
+
+      .nav-dropdown .divider {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV COMPONENT
+       Copy everything between the <nav> tags into any page.
+  ============================================================ -->
+  <nav class="main-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="/" class="nav-logo">&#10022; Ear Piercings</a>
+
+      <!-- Mobile hamburger -->
+      <button class="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false" id="hamburgerBtn" onclick="toggleNav(this)">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Navigation links -->
+      <ul class="nav-links" id="navLinks" role="menubar">
+
+        <!-- TYPES dropdown -->
+        <li role="none">
+          <button onclick="toggleDropdown(this)" aria-haspopup="true" aria-expanded="false" role="menuitem">Types</button>
+          <ul class="nav-dropdown" role="menu" aria-label="Types">
+            <li role="none"><a href="/types-of-ear-piercings/" role="menuitem">All types of ear piercings</a></li>
+            <li role="none"><a href="/cartilage-ear-piercings/" role="menuitem">Cartilage piercings <span class="new-badge">NEW</span></a></li>
+            <li role="none"><a href="/multiple-ear-piercings/" role="menuitem">Multiple piercings</a></li>
+          </ul>
+        </li>
+
+        <!-- PAIN dropdown -->
+        <li role="none">
+          <button onclick="toggleDropdown(this)" aria-haspopup="true" aria-expanded="false" role="menuitem">Pain</button>
+          <ul class="nav-dropdown" role="menu" aria-label="Pain">
+            <li role="none"><a href="/do-ear-piercings-hurt/" role="menuitem">Does it hurt? <span class="new-badge">NEW</span></a></li>
+            <li role="none"><a href="/pain-ear-piercings-chart/" role="menuitem">Pain chart <span class="new-badge">NEW</span></a></li>
+            <li role="none"><a href="/most-painful-ear-piercings/" role="menuitem">Most painful</a></li>
+            <li role="none"><a href="/least-painful-ear-piercings/" role="menuitem">Least painful <span class="new-badge">NEW</span></a></li>
+          </ul>
+        </li>
+
+        <!-- HEALING single link -->
+        <li role="none">
+          <a href="/how-long-do-ear-piercings-take-to-heal/" role="menuitem">Healing</a>
+        </li>
+
+        <!-- INSPIRATION dropdown -->
+        <li role="none">
+          <button onclick="toggleDropdown(this)" aria-haspopup="true" aria-expanded="false" role="menuitem">Inspiration</button>
+          <ul class="nav-dropdown" role="menu" aria-label="Inspiration">
+            <li role="none"><a href="/ear-piercings-ideas/" role="menuitem">Piercing ideas</a></li>
+            <li role="none"><a href="/attractive-trendy-cute-ear-piercings/" role="menuitem">Trendy &amp; cute <span class="new-badge">NEW</span></a></li>
+            <li role="none"><a href="/ear-piercings-for-men/" role="menuitem">Men's piercings</a></li>
+          </ul>
+        </li>
+
+        <!-- REFERENCE dropdown -->
+        <li role="none">
+          <button onclick="toggleDropdown(this)" aria-haspopup="true" aria-expanded="false" role="menuitem">Reference</button>
+          <ul class="nav-dropdown" role="menu" aria-label="Reference">
+            <li role="none"><a href="/ear-piercings-names/" role="menuitem">Names &amp; chart</a></li>
+            <li role="none"><a href="/how-much-are-ear-piercings/" role="menuitem">Cost guide</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+  <!-- END NAV COMPONENT -->
+
+  <!-- ============================================================
+       DEMO CONTENT — shows nav in context; not part of component
+  ============================================================ -->
+  <div class="container">
+    <div class="demo-section">
+      <h1>Nav Component Reference</h1>
+      <p>This file shows the navigation component in context and provides the copy-paste markup. The nav uses CSS-only dropdowns via <code>:hover</code> and <code>:focus-within</code> for keyboard accessibility, plus a JavaScript toggle for mobile.</p>
+
+      <h2>How to Use</h2>
+      <p>Copy the entire <code>&lt;nav class="main-nav"&gt;...&lt;/nav&gt;</code> block into any page. Include the styles from the <code>&lt;style&gt;</code> block above (or from <strong>page-template.html</strong>) and the JavaScript snippet at the bottom of this file.</p>
+
+      <h2>Nav Structure at a Glance</h2>
+      <div class="code-block">
+✦ Ear Piercings  (logo → /)
+
+TYPES ▾
+  All types of ear piercings  →  /types-of-ear-piercings/
+  Cartilage piercings [NEW]   →  /cartilage-ear-piercings/
+  Multiple piercings          →  /multiple-ear-piercings/
+
+PAIN ▾
+  Does it hurt? [NEW]         →  /do-ear-piercings-hurt/
+  Pain chart [NEW]            →  /pain-ear-piercings-chart/
+  Most painful                →  /most-painful-ear-piercings/
+  Least painful [NEW]         →  /least-painful-ear-piercings/
+
+HEALING                       →  /how-long-do-ear-piercings-take-to-heal/
+
+INSPIRATION ▾
+  Piercing ideas              →  /ear-piercings-ideas/
+  Trendy & cute [NEW]         →  /attractive-trendy-cute-ear-piercings/
+  Men's piercings             →  /ear-piercings-for-men/
+
+REFERENCE ▾
+  Names & chart               →  /ear-piercings-names/
+  Cost guide                  →  /how-much-are-ear-piercings/
+      </div>
+
+      <h2>Active State</h2>
+      <p>Add <code>class="active"</code> to the current page's <code>&lt;a&gt;</code> tag in the nav to apply the crimson underline active indicator.</p>
+
+      <h2>Accessibility Notes</h2>
+      <p>Dropdowns respond to both <code>:hover</code> (mouse) and <code>:focus-within</code> (keyboard Tab navigation). The hamburger button toggles <code>aria-expanded</code>. Dropdown containers use <code>role="menu"</code> and items use <code>role="menuitem"</code>.</p>
+    </div>
+  </div>
+
+  <script>
+    function toggleNav(btn) {
+      var links = document.getElementById('navLinks');
+      var isOpen = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen);
+      btn.classList.toggle('open', isOpen);
+    }
+
+    function toggleDropdown(btn) {
+      if (window.innerWidth <= 768) {
+        var li = btn.parentElement;
+        var isOpen = li.classList.toggle('mobile-open');
+        btn.setAttribute('aria-expanded', isOpen);
+      }
+    }
+  </script>
+
+</body>
+</html>
