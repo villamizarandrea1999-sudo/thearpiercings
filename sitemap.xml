@@ -16,6 +16,16 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://theearpiercings.com/helix-piercing.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://theearpiercings.com/cartilage-ear-piercings.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://theearpiercings.com/names-of-ear-piercings.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -31,6 +41,21 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://theearpiercings.com/pain-ear-piercings-chart.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://theearpiercings.com/do-ear-piercings-hurt.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://theearpiercings.com/least-painful-ear-piercings.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://theearpiercings.com/mens-ear-piercings.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -41,12 +66,17 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://theearpiercings.com/how-much-are-ear-piercings.html</loc>
+    <loc>https://theearpiercings.com/attractive-trendy-cute-ear-piercings.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://theearpiercings.com/multiple-ear-piercings.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://theearpiercings.com/how-much-are-ear-piercings.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
